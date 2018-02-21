@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  node1:
+    build: qtum/
+    volumes:
+      - ./qtum/data/node1:/data
+      - ./qtum/config/node1.conf:/home/qtum/qtum.conf:ro
+    entrypoint:
+      - /entrypoint.sh
+      - qtumd
+    networks:
+     - qtum_network
+  node2:
+    build: qtum/
+    volumes:
+      - ./qtum/data/node2:/data
+      - ./qtum/config/node2.conf:/home/qtum/qtum.conf:ro
+    entrypoint:
+      - /entrypoint.sh
+      - qtumd
+    networks:
+     - qtum_network
+  node3:
+    build: qtum/
+    volumes:
+      - ./qtum/data/node3:/data
+      - ./qtum/config/node3.conf:/home/qtum/qtum.conf:ro
+    entrypoint:
+      - /entrypoint.sh
+      - qtumd
+    networks:
+     - qtum_network
+
+networks:
+ qtum_network:
+   driver: bridge
